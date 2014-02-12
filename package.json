@@ -1,0 +1,25 @@
+{
+  "name": "91160",
+  "version": "0.0.0",
+  "description": "Create a new repository on the command line",
+  "main": "config.sample.js",
+  "dependencies": {
+    "request": "~2.33.0"
+  },
+  "devDependencies": {
+    "request": "~2.33.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junp/91160.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junp/91160/issues"
+  },
+  "homepage": "https://github.com/junp/91160"
+}
