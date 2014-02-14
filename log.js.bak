@@ -1,0 +1,6 @@
+var fs = require('fs')
+var Log = require('log')
+
+var log = new Log('info', fs.createWriteStream('log.txt'))
+
+modules.exports = log

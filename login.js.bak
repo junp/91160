@@ -9,14 +9,15 @@ var content = querystring.stringify({
 	login_user: '',
 	password: config.password	
 })
-
+content = ''
 var options = {
-	host: 'weixin.91160.com',
-	path: '/index.php?c=user&a=login',
-	method: 'POST',
+	host: 'proxy.tencent.com',
+	port: 8080,
+	path: 'http://weixin.91160.com/index.php',
+	method: 'GET',
 	headers: {
-	"Content-Length": content.length,
-	"Content-Type": "application/x-www-form-urlencoded",
+	//"Content-Length": content.length,
+	"Cookie": cookie.getCookie(),
 	"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 	"Accept-Encoding":"gzip, deflate",
 	"Accept-Language":"en-US,en;q=0.5",
@@ -27,20 +28,16 @@ var options = {
 	}
 }
 
-var login = function(){
+var req = http.request(options, function(res){
+	res.setEncoding('utf8')
+	var cookies = res.headers['set-cookie']
+	//cookie.setCookie(cookies)
 
-
-	var req = http.request(options, function(res){
-		res.setEncoding('utf8')
-		var cookies = res.headers['set-cookie']
-		cookie.setCookie(cookies)
-		res.on('data', function(data){
-			console.log(data)
-		})
+	
+	res.on('data', function(data){
+		console.log(data)
 	})
+})
 
-	req.write(content)
-	req.end()
-}
-
-login()
+req.write(content)
+req.end()

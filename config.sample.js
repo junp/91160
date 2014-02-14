@@ -1,6 +1,10 @@
 var conf = {
-	'card': '',
-	'password': ''
+	card: '',
+	password: '',
+	sch: {
+		t: 'am',
+		d: '2014-02-20'
+	}
 }
 
-return conf
+module.exports = conf
