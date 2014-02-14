@@ -18,8 +18,5 @@ var check = function(){
 	})
 }
 
-<<<<<<< HEAD
 setInterval(check,1)
-=======
-setInterval(check,1)
->>>>>>> 49a3565c0f975a2017a8380a1d7ade3535315306
+

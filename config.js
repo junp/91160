@@ -3,7 +3,7 @@ var conf = {
 	password: 'junp91160',
 	sch: {
 		t: 'am',
-		d: '2014-02-22'
+		d: '2014-02-20'
 	}
 }
 
