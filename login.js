@@ -43,8 +43,4 @@ var login = function(){
 	req.end()
 }
 
-<<<<<<< HEAD
 login()
-=======
-login()
->>>>>>> 49a3565c0f975a2017a8380a1d7ade3535315306
