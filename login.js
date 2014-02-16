@@ -1,13 +1,13 @@
 var http = require('http')
 var querystring = require('querystring')
 var cookie = require('./cookie')
-var loginInfo = require('./config').login
+var config = require('./config')
 
 var content = querystring.stringify({
-	card: loginInfo.card,
+	card: config.card,
 	fromurl: '',
 	login_user: '',
-	password: loginInfo.password	
+	password: config.password	
 })
 
 var options = {

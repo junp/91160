@@ -1,19 +1,22 @@
 var request = require('request')
 var order = require('./order')
 var loginStatus = require('./check')
+var config = require('./config')
 
 request = request.defaults({
 //	proxy:'http://proxy.tencent.com:8080'
 })
 
 var i = 0
+var cgi = 'http://sz.91160.com/doc/getschmast/unit_id-'+config.unit_id+'/dep_id-'+config.dep_id+'/doc_id-'+config.doc_id+'/date-.html'
 var check = function(){
-	request.get('http://sz.91160.com/doc/getschmast/unit_id-103/dep_id-2534/doc_id-7996/date-.html', function(err,b,c){
+	request.get(cgi, function(err,b,c){
 		if(err){
 			return
 		}
-		var data = JSON.parse(c);
-		var state = (data.sch.pm['2014-02-24']['y_state']) + ''
+		var data = JSON.parse(c)
+		var sch = config.sch
+		var state = (data.sch[sch.t][sch.d]['y_state']) + ''
 
 		var msg = ''
 		switch (state){

@@ -1,7 +1,7 @@
 var http = require('http')
 var querystring = require('querystring')
 var cookie = require('./cookie')
-var config = require('./config').order
+var config = require('./config')
 
 
 var content = querystring.stringify({
