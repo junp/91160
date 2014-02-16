@@ -1,14 +1,15 @@
 var http = require('http')
 var querystring = require('querystring')
 var cookie = require('./cookie')
-var config = require('./config')
+var config = require('./config').order
+
 
 var content = querystring.stringify({
-	member_id: '2348354',
-	pay_method: '2',
-	unit_id: '103',
-	sch_id: '2648690',
-	detl_id: '10387687'
+	member_id: config.member_id,
+	pay_method: config.pay_method,
+	unit_id: config.unit_id,
+	sch_id: config.sch_id,
+	detl_id: config.detl_id
 })
 
 var options = {
@@ -30,11 +31,10 @@ var options = {
 }
 
 var order = function(){
-
+	options.headers['Cookie'] = cookie.getCookie()
 
 	var req = http.request(options, function(res){
 		res.setEncoding('utf8')
-		var cookies = res.headers['set-cookie']
 
 		res.on('data', function(data){
 			console.log(data)
@@ -44,5 +44,5 @@ var order = function(){
 	req.write(content)
 	req.end()
 }
-
 order()
+//exports.submit = order

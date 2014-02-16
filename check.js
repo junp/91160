@@ -1,7 +1,7 @@
 var http = require('http')
 var querystring = require('querystring')
 var cookie = require('./cookie')
-var config = require('./config')
+var login = require('./login')
 
 var content = ''
 
@@ -17,23 +17,29 @@ var options = {
 	"Accept-Language":"en-US,en;q=0.5",
 	"Connection":"keep-alive",
 	"Host":"weixin.91160.com",
-	//"Referer":"http://weixin.91160.com/index.php?c=user&a=login",
 	"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0"
 	}
 }
 
 var check = function(){
-
+	options.headers['Cookie'] = cookie.getCookie()
 
 	var req = http.request(options, function(res){
-		res.setEncoding('utf8')
-		res.on('data', function(data){
-			console.log(data)
-		})
+		if(res.statusCode == 302){
+			console.log('[' + new Date() + ']登录失效，res.statusCode:' + res.statusCode)
+			login.login()
+			console.log('------------------')
+			console.log('[' + new Date() + ']尝试重新登录...')
+			console.log('------------------')
+		}
+		else if(res.statusCode == 200){
+			console.log('[' + new Date() + ']登录正常')
+		}
+
+		res.on('data', function(data){})
 	})
 
 	req.write(content)
 	req.end()
 }
-
- check()
+exports.check = check

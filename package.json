@@ -8,7 +8,10 @@
   },
   "devDependencies": {
     "request": "~2.33.0",
-    "log": "~1.4.0"
+    "log": "~1.4.0",
+    "cheerio": "~0.13.1",
+    "node-tesseract": "~0.2.2",
+    "nodecr": "0.0.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
