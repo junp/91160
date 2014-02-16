@@ -2,6 +2,7 @@ var request = require('request')
 var order = require('./order')
 var loginStatus = require('./check')
 var config = require('./config')
+var log = require('./log')
 
 request = request.defaults({
 //	proxy:'http://proxy.tencent.com:8080'
@@ -32,7 +33,11 @@ var check = function(){
 			defaults:
 				msg = '异常'
 		}
-		console.log('['+new Date()+']' + msg + ' 第'+(i++)+'次尝试')
+		msg = '['+new Date()+']' + msg + ' 第'+(i++)+'次尝试'
+		console.log(msg)
+		if(i % 20 == 0){
+			log.write(msg)
+		}
 		if(state == 1){
 			order.submit()
 		}
