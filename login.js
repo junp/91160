@@ -11,8 +11,9 @@ var content = querystring.stringify({
 })
 
 var options = {
-	host: 'weixin.91160.com',
-	path: '/index.php?c=user&a=login',
+	host: config.proxy.host,
+	port: config.proxy.port,
+	path: 'http://weixin.91160.com/index.php?c=user&a=login',
 	method: 'POST',
 	headers: {
 	"Content-Length": content.length,

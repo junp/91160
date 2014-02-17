@@ -2,12 +2,14 @@ var http = require('http')
 var querystring = require('querystring')
 var cookie = require('./cookie')
 var login = require('./login')
+var config = require('./config')
 
 var content = ''
 
 var options = {
-	host: 'weixin.91160.com',
-	path: '/index.php?c=account&a=index',
+	host: config.proxy.host,
+	port: config.proxy.port,
+	path: 'http://weixin.91160.com/index.php?c=account&a=index',
 	method: 'GET',
 	headers: {
 	"Content-Length": content.length,
