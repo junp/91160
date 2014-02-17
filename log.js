@@ -38,7 +38,4 @@ Log.defaults = {
 }
 
 var log = new Log()
-for(var i = 0; i < 1000; i++){
-	console.log(i)
-	log.write(i)
-}
+module.exports = log

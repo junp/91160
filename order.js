@@ -13,8 +13,9 @@ var content = querystring.stringify({
 })
 
 var options = {
-	host: 'weixin.91160.com',
-	path: '/index.php?c=order&a=submit',
+	host: config.proxy.host,
+	port: config.proxy.port,
+	path: 'http://weixin.91160.com/index.php?c=order&a=submit',
 	method: 'POST',
 	headers: {
 	"Content-Length": content.length,
@@ -25,7 +26,8 @@ var options = {
 	"Accept-Language":"en-US,en;q=0.5",
 	"Connection":"keep-alive",
 	"Host":"weixin.91160.com",
-	"Referer":"http://weixin.91160.com/index.php?c=order&a=confirm&unit_id=103&sch_id=2648690&detl_id=10387687",
+	"Origin":"http://weixin.91160.com",
+	"Referer":"http://weixin.91160.com/index.php?c=order&a=confirm&unit_id="+config.unit_id+"&sch_id="+config.sch_id+"&detl_id="+config.detl_id,
 	"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0"
 	}
 }
@@ -44,5 +46,5 @@ var order = function(){
 	req.write(content)
 	req.end()
 }
-order()
-//exports.submit = order
+//order()
+exports.submit = order
