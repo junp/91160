@@ -3,6 +3,7 @@ var querystring = require('querystring')
 var cookie = require('./cookie')
 var login = require('./login')
 var config = require('./config')
+var order = require('./order')
 var log = require('./log')
 
 var content = ''
@@ -10,7 +11,7 @@ var content = ''
 var options = {
 	host: config.proxy.host,
 	port: config.proxy.port,
-	path: 'http://weixin.91160.com/index.php?c=doc&a=detl&unit_id=103&detl=2648695',
+	path: 'http://weixin.91160.com/index.php?c=doc&a=detl&unit_id=103&detl=2672372|',
 	method: 'POST',
 	headers: {
 	"Content-Length": content.length,
@@ -44,8 +45,15 @@ var check = function(){
 		res.setEncoding('utf8')
 
 		res.on('data', function(body){
-			
-			var data = JSON.parse(body).data
+			try
+			{
+				var data = JSON.parse(body).data
+			}
+			catch (e)
+			{
+				return
+			}
+			//var data = JSON.parse(body).data
 			var max = 0
 			var num = 0
 			for(var d in data){
@@ -53,10 +61,19 @@ var check = function(){
 				num = data[d]['yuyue_num']
 				if(max>num){
 					console.log('可预约')
+					order.submit({
+						member_id: config.member_id,
+						pay_method: config.pay_method,
+						unit_id: config.unit_id,
+						sch_id: data[d]['schedule_id'],
+						detl_id: data[d]['detl_id']
+					})
 					log.write('['+new Date()+']ok.........')
+					//log.err(2)
 				}
 				else{
 					console.log('约满')
+					log.write('['+new Date()+']约满.........')
 				}
 				console.log(data[d]['detl_id'])
 				console.log(data[d]['schedule_id'])
@@ -69,5 +86,5 @@ var check = function(){
 	req.write(content)
 	req.end()
 }
-
-setInterval(check,5000)
+//check()
+setInterval(check,500)
