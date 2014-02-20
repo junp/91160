@@ -14,7 +14,7 @@ var contentConf = querystring.stringify({
 	ny_sms_code: '',
 	phone_check: ''
 })
-console.log(contentConf)
+
 var options = {
 	host: config.proxy.host,
 	port: config.proxy.port,
@@ -39,11 +39,12 @@ var options = {
 var order = function(content){
 	if(content){
 		contentConf = querystring.stringify(content)
-			console.log(contentConf)
 		options.headers['Content-Length'] = contentConf.length
 	}
 
 	options.headers['Cookie'] = cookie.getCookie()
+
+console.log(contentConf)
 
 	var req = http.request(options, function(res){
 		res.setEncoding('utf8')
