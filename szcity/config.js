@@ -5,7 +5,7 @@ var conf = {
 	docname:'侯中权',
 	docid:'2136',
 	levelname:'副主任医师',
-	guahaoamt:'15',
+	guahaoamt:'18',
 	time:'08:30-09:30',
 	todate:'2014-02-26',
 	health_card:'',
