@@ -1,0 +1,4 @@
+#LWP-Cookies-2.0
+Set-Cookie3: UserName_glber="%7B%22id%22%3A%222308739%22%2C%22fid%22%3A%221766864%22%2C%22name%22%3A%22%5Cu90d1%5Cu6e5b%5Cu6ce2%22%2C%22email%22%3Anull%2C%22phone%22%3A%221434757283%22%2C%22health_card%22%3A%22N2308739%22%7D"; path="/"; domain=".91160.com"; path_spec; domain_dot; expires="2014-03-03 17:12:22Z"; version=0
+Set-Cookie3: login_username=13434757283; path="/"; domain=".91160.com"; path_spec; domain_dot; expires="2014-03-03 17:12:22Z"; version=0
+Set-Cookie3: Hm_lvt_c4e8e5b919a5c12647962ea08462e63b=1393261942; path="/"; domain="weixin.91160.com"; path_spec; expires="2015-02-24 17:12:22Z"; version=0
