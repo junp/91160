@@ -40,7 +40,7 @@ class mythread(threading.Thread):
 		req = urllib2.Request('http://weixin.91160.com/index.php?c=order&a=submit')
 		
 		proxy = ['web-proxy.oa.com:8080','web-proxy.oa.com:8080','proxy.tencent.com:8080'][idx]
-		req.set_proxy(proxy, 'http')
+		#req.set_proxy(proxy, 'http')
 		req.add_header('Origin', 'http://weixin.91160.com')
 		req.add_header('Content-Type', 'application/x-www-form-urlencoded')
 		req.add_header('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8')
@@ -56,7 +56,7 @@ class mythread(threading.Thread):
 		html = res.read().decode('utf-8')
 		m = re.search(u'\u8bf7\u7a0d\u540e\u518d\u8bd5', html)
 		if m:
-			
+
 			global _i
 			_i+=1
 			print 'later ',_i
@@ -66,17 +66,18 @@ class mythread(threading.Thread):
 			print 'ok',_i2
 		diff = time.time() - start
 		print diff
+		time.sleep(0.1)
+		self.order()
 
 
 def func1():
 	num = threading.activeCount()
 	i = 0
-	while num < 8:
+	while num < 50:
 		print 'current num:%d',num
 		t = mythread('t1'+str(i))
 		t.start()
 		num+=1
 
 
-while True:
-	func1()
+func1()
