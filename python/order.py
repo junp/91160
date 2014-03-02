@@ -5,6 +5,7 @@ import urllib2
 import re
 import time
 import ConfigParser
+import random
 
 class order():
 	def __init__(self):
@@ -32,7 +33,7 @@ class order():
 		self._sch_id = cf.get('hospital', 'sch_id')
 
 		#号源
-		self._detl_id = cf.get('hospital', 'detl_id')
+		self._detl_id = cf.get('hospital', 'detl_id').split(',')
 
 		# 验证码
 		self._captcha = cf.get('check', 'captcha')
@@ -49,6 +50,7 @@ class order():
 
 	#提交
 	def submit(self):
+		idx = random.randint(0,2)
 		value = {
 			'captcha': self._captcha,
 			'member_id': self._member_id,
@@ -58,7 +60,7 @@ class order():
 			'phone': self._phone,
 			'ny_sms_code': self._ny_sms_code,
 			'phone_check': self._phone_check,
-			'detlid': self._detl_id
+			'detlid': self._detl_id[idx]
 		}
 
 		data = urllib.urlencode(value)
@@ -84,10 +86,13 @@ class order():
 			res = urllib2.urlopen(req)
 			html = res.read().decode('utf-8')
 
-			print html
+			print time.time()
+			time.sleep(0.02)
+			self.submit()
 	
 		except :
 			print 'error'
+			self.submit()
 
 if __name__ == '__main__':
 	myOrder = order()
